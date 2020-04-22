@@ -1,5 +1,5 @@
 /*size of fractal */
-let numlist = [3, 9, 27, 81]; 
+let numlist = [3, 9, 27, 81];
 let numidx = 2;
 let num;
 /*color multiplication size for stars*/
@@ -45,16 +45,16 @@ function init() {
 
 
 function draw() {
-  
+
   let mx = mouseX;
   let my = mouseY;
-  
+
   background(bg_color[0], bg_color[1], bg_color[2]);
-  
+
 
   /* Fill Star Map*/
   if (updated) {
-    
+
     for (let i = 0; i < 250; i++) {
       for (let j = 0; j < 250; j++) {
         starmap[i][j] = 0;
@@ -64,18 +64,18 @@ function draw() {
     fill_starmap(num, 0, 0);
     updated = false;
   }
-  
+
   /*Drawing the moon*/
   push();
-  draw_moon(canvas_w / 2, canvas_h / 2, min(canvas_w,canvas_h) / 5, min(canvas_h,canvas_w) / 5, (mx / canvas_w) * (canvas_w / 5) + canvas_w / 2, (canvas_h / 2) - (mx / canvas_w) * (canvas_h / 10))
+  draw_moon(canvas_w / 2, canvas_h / 2, min(canvas_w, canvas_h) / 5, min(canvas_h, canvas_w) / 5, (mx / canvas_w) * (canvas_w / 5) + canvas_w / 2, (canvas_h / 2) - (mx / canvas_w) * (canvas_h / 10))
   pop();
-  
+
   /* Drawing the stars */
   draw_starmap(canvas_w / num, canvas_h / num, mx, my);
 }
 
 function fill_starmap(n, x, y) {
-  
+
   /*
   Fill starmap following fractal shape.
   Create fractal using recursive
@@ -100,7 +100,7 @@ function draw_starmap(w, h, mx, my) {
   /*Draw stars using starmap*/
   fill(color(100, 100, 100));
   noStroke();
-  
+
   //Check all element of starmap
   for (let i = 0; i < num; i++) {
     for (let j = 0; j < num; j++) {
@@ -108,14 +108,14 @@ function draw_starmap(w, h, mx, my) {
       let y = j * h + h / 2;
       // If starmap[i][j] is 1, draw star
       if (starmap[i][j] === 1) {
-          let c = [map(my,0,canvas_h,40,100)+i*cd,map(my,0,canvas_h,40,150)+j*cd,255];
-        
-          fill(c[0], c[1], c[2]);
-          if (dist(x, y, mx, my) < 60) {
-            draw_star(x, y, random(2, min(w, h)));
-          } else {
-            draw_star(x, y, min(w, h) / 2);
-          }
+        let c = [map(my, 0, canvas_h, 40, 100) + i * cd, map(my, 0, canvas_h, 40, 150) + j * cd, 255];
+
+        fill(c[0], c[1], c[2]);
+        if (dist(x, y, mx, my) < 60) {
+          draw_star(x, y, random(2, min(w, h)));
+        } else {
+          draw_star(x, y, min(w, h) / 2);
+        }
 
 
       }
@@ -124,30 +124,21 @@ function draw_starmap(w, h, mx, my) {
 }
 
 
-function keyPressed() {
+function mouseClicked(event) {
+  /* chage size of fractal */
 
-  /*Change size of fractal */
-  
-  switch (keyCode) {
-    case UP_ARROW:
-      numidx++;
-      break;
-    case DOWN_ARROW:
-      numidx--;
-      break;
-  }
-  
+  numidx++;
+
+      
   if(numidx > 3)
     numidx = 0;
-  else if(numidx < 0 )
-    numidx = 3;
-  
-  if(num !== numlist[numidx]){
-    num = numlist[numidx];
-    updated = true;
-  }
 
+  num = numlist[numidx];
+  updated = true;
+
+  
 }
+
 
 function draw_star(x, y, size) {
   /*Draw star*/
@@ -172,9 +163,9 @@ function draw_moon(x, y, w, h, vx, vy) {
   noStroke();
   fill(bg_color[0], bg_color[1], bg_color[2]);
   ellipse(vx, vy, w + 1, h + 1);
-  
+
   /*Drawing text*/
   fill(255, 243, 110);
-  textSize(w/6);
-  text('Artist. \nMamon', x-w/4, y);
+  textSize(w / 6);
+  text('Artist. \nMamon', x - w / 4, y);
 }

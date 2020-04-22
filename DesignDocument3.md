@@ -1,4 +1,4 @@
-Design Document - Fractal Sky
+# Design Document - Fractal Sky
 
 ### Project 3 Interactive 2D Pattern
 
@@ -48,7 +48,7 @@ A Sensitive person who loves the night sky
 
 -   **Stars' color** changes by the `mouse Y` coordinate.
 -  Stars located less than a certain distance from the `mouse coordinate` **twinkle**.
--  **Fractal size** is changed with `key_up` and `key_down.` 
+-  **Fractal size** is changed with `click left mouse button`. 
 
 
 
@@ -160,8 +160,8 @@ A Sensitive person who loves the night sky
 
   
 
-1.  **The function `keyPressed()` is called every time the keyboard is pressed**
-   * Changing size of fractal(`num`)  by `UP_ARROW` or `DOWN ARROW`
+1.  **The function `mouseClicked(event)` is called every time the left mouse button is clicked**
+   * Changing size of fractal(`num`)  by mouse button clicking
 
 
 
